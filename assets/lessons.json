@@ -1,0 +1,32 @@
+[
+    {
+        "word": "Flower",
+        "image": "flower",
+        "ptbr": "Flor"
+    },
+    {
+        "word": "Cat",
+        "image": "cat",
+        "ptbr": "Gato"
+    },
+    {
+        "word": "Eagle",
+        "image": "eagle",
+        "ptbr": "Águia"
+    },
+    {
+        "word": "Bird",
+        "image": "bird",
+        "ptbr": "Águia"
+    },
+    {
+        "word": "Tree",
+        "image": "tree",
+        "ptbr": "Árvore"
+    },
+    {
+        "word": "Water",
+        "image": "water",
+        "ptbr": "Água"
+    }
+]
