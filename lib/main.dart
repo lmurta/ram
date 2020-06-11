@@ -1,14 +1,20 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_speech/flutter_speech.dart';
+import './theme.dart';
 
 void main() {
 //  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   runApp(MaterialApp(
+    theme: ThemeData(
+      //primarySwatch: Colors.blueGrey,
+      primaryColor: Colors.pinkAccent[700],
+      accentColor: Colors.pink,
+      textTheme: AppTheme.textTheme,
+    ),
     home: MyApp(),
   ));
 }
@@ -44,27 +50,27 @@ class MyAppState extends State<MyApp> {
   Icon iconSay = Icon(Icons.mic);
   var wordIndex = 0;
   var imageData = [];
-  TextStyle textStyle = TextStyle(
-      //fontSize: 20.0,
-      //color: const Color(0xFF108caa),
-      //fontWeight: FontWeight.w500,
-      fontFamily: "Roboto");
-  Text wordText = Text("Repeat after me:");
-  Text wordListened = Text(". . . ");
+
+  Text wordText = Text(
+    "Read:",
+    style: AppTheme.title,
+  );
+  Text wordListened = Text(
+    "Say:",
+    style: AppTheme.title,
+  );
 
   TextField textFieldType = TextField(
     decoration: InputDecoration(
+      hintText: "Type:",
       border: OutlineInputBorder(),
       isDense: true,
       contentPadding: const EdgeInsets.all(3.0),
     ),
+    style: AppTheme.title,
     autocorrect: false,
     enableSuggestions: false,
     keyboardType: TextInputType.text,
-    style: TextStyle(
-        // color: Colors.red,
-        //  fontWeight: FontWeight.w300,
-        ),
   );
 
   @override
@@ -236,31 +242,39 @@ class MyAppState extends State<MyApp> {
     }
   }
 
-  Future _speakStop() async {
+/*  Future _speakStop() async {
     var result = await flutterTts.stop();
     if (result == 1) setState(() => ttsState = TtsState.stopped);
   }
-
+*/
   void pageChanged(int index) {
     _listenStop();
     //print("index:" + index.toString());
     setState(() {
-      wordText = Text(imageData[index]['word'], style: textStyle);
+      wordText = Text(
+        imageData[index]['word'],
+        style: AppTheme.title,
+      );
     });
     _speakText = imageData[index]['word'];
     _speak();
     //new Future.delayed(const Duration(seconds: 5));
   }
+
   void onRecognitionResult(String text) {
     print('_MyAppState.onRecognitionResult... $text');
-    setState(() { 
-      wordListened = Text(text, style: textStyle);
-      });
+    setState(() {
+      wordListened = Text(
+        text,
+        style: AppTheme.title,
+      );
+    });
   }
 
+/*
   void _listenCancel() =>
       _speech.cancel().then((_) => setState(() => _isListening = false));
-
+*/
   void _listenStop() => _speech.stop().then((_) {
         setState(() => _isListening = false);
       });
@@ -278,8 +292,6 @@ class MyAppState extends State<MyApp> {
     setState(() => _isListening = true);
   }
 
-
-
   void onRecognitionComplete(String text) {
     print('_MyAppState.onRecognitionComplete... $text');
     setState(() => _isListening = false);
@@ -287,3 +299,15 @@ class MyAppState extends State<MyApp> {
 
   void errorHandler() => activateSpeechRecognizer();
 } //end main class
+
+class HexColor extends Color {
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF' + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+}
