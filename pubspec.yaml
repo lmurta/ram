@@ -34,13 +34,15 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_name: "^0.0.1"
   flutter_launcher_icons: ^0.7.5
-
+#https://pub.dev/packages/flutter_launcher_icons
+#flutter pub run flutter_launcher_icons:main
 flutter_icons:
   android: true
   ios: true
-  image_path: "logotipos/ram.png"
-  adaptive_icon_background: "#191919"
-  adaptive_icon_foregoround: "logotipos/ram_adaptive.png"
+  image_path: "logotipos/ram2_
+  512.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foregoround: "logotipos/ram2_adaptive.png"
     
 flutter_launcher_name:
   name: "Repeat After Me"
