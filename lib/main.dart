@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math' show Random;
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -10,7 +12,6 @@ void main() {
 //  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   runApp(MaterialApp(
     theme: ThemeData(
-      //primarySwatch: Colors.blueGrey,
       primaryColor: Colors.pinkAccent[700],
       accentColor: Colors.pink,
       textTheme: AppTheme.textTheme,
@@ -27,6 +28,15 @@ class MyApp extends StatefulWidget {
 enum TtsState { playing, stopped }
 
 class MyAppState extends State<MyApp> {
+  int totPoints = 0;
+  Text pointsText = Text(
+    "000.000.000",
+    style: AppTheme.display1,
+  );
+  final formatter = new NumberFormat("###,###.###");
+  var randomizer = new Random();
+
+
   SpeechRecognition _speech;
   bool _speechRecognitionAvailable = false;
   bool _isListening = false;
@@ -132,6 +142,27 @@ class MyAppState extends State<MyApp> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Repeat After Me"),
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              child: pointsText,
+              padding: const EdgeInsets.all(6.0),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    offset: Offset(3.0, 3.0), //(x,y)
+                    blurRadius: 6.0,
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
       body: Container(
         child: SingleChildScrollView(
@@ -295,6 +326,25 @@ class MyAppState extends State<MyApp> {
   void onRecognitionComplete(String text) {
     print('_MyAppState.onRecognitionComplete... $text');
     setState(() => _isListening = false);
+    String A = _speakText.trim().toLowerCase();
+    String B = text.trim().toLowerCase();
+    print("---Comparing---["+ A +"]=["+ B+"]");
+    
+    if (A == B) {
+      print("iguais");
+      //totPoints++;
+      totPoints += randomizer.nextInt(1000);
+      String T = formatter.format((totPoints));
+      setState(() {
+        pointsText = Text(
+          T,
+          style: AppTheme.display1,
+        );
+      });
+    }else{
+      print("not equals");
+    }
+    
   }
 
   void errorHandler() => activateSpeechRecognizer();
