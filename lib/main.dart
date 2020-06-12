@@ -1,16 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math' show Random;
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_speech/flutter_speech.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 import './theme.dart';
 
 void main() {
-//  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     theme: ThemeData(
       primaryColor: Colors.teal[800],
       accentColor: Colors.teal,
@@ -19,8 +21,16 @@ void main() {
     home: MyApp(),
   ));
 }
+  final AssetsAudioPlayer _soundPoints = AssetsAudioPlayer();
+  final AssetsAudioPlayer _soundReward = AssetsAudioPlayer();
+  
 
 class MyApp extends StatefulWidget {
+//Audio points
+//  final AssetsAudioPlayer _soundPoints = AssetsAudioPlayer();
+
+//Audio Points
+
   @override
   MyAppState createState() => MyAppState();
 }
@@ -28,6 +38,7 @@ class MyApp extends StatefulWidget {
 enum TtsState { playing, stopped }
 
 class MyAppState extends State<MyApp> {
+  
   int totPoints = 0;
   Text pointsText = Text(
     "0",
@@ -59,9 +70,9 @@ class MyAppState extends State<MyApp> {
 
   Text wordText = Text("Read:", style: AppTheme.title);
   Text wordListened = Text("Say:", style: AppTheme.title);
-  static var _inputController = TextEditingController();
-  TextField wordTyped = TextField(
-    controller: _inputController,
+  final _typedController = TextEditingController();
+  TextFormField wordTyped = TextFormField(
+    //controller: _typedController,
     decoration: InputDecoration(
       hintText: "Type:",
       border: OutlineInputBorder(),
@@ -72,13 +83,34 @@ class MyAppState extends State<MyApp> {
     autocorrect: false,
     enableSuggestions: false,
     keyboardType: TextInputType.text,
+    //onSubmitted: ()_inputSubmitted(),
   );
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    _typedController.dispose();
+    _soundPoints.dispose();
+    _soundReward.dispose();
+    super.dispose();
+  }
+
+  Audio find(List<Audio> source, String fromPath) {
+    return source.firstWhere((element) => element.path == fromPath);
+  }
 
   @override
   initState() {
     super.initState();
     initTts();
     activateSpeechRecognizer();
+//audio points
+      _soundPoints.open(Audio("assets/sounds/soundPoints.m4a"));
+      _soundReward.open(Audio("assets/sounds/soundReward.m4a"));
+      _soundReward.setVolume(0.5);
+
+//audio points
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -97,8 +129,6 @@ class MyAppState extends State<MyApp> {
 
   initTts() {
     flutterTts = FlutterTts();
-
-    //_getLanguages();
     flutterTts.setLanguage(_selectedlanguage);
     flutterTts.setStartHandler(() {
       setState(() {
@@ -106,21 +136,18 @@ class MyAppState extends State<MyApp> {
         ttsState = TtsState.playing;
       });
     });
-
     flutterTts.setCompletionHandler(() {
       setState(() {
         //print("Complete");
         ttsState = TtsState.stopped;
       });
     });
-
     flutterTts.setCancelHandler(() {
       setState(() {
         //print("Cancel");
         ttsState = TtsState.stopped;
       });
     });
-
     flutterTts.setErrorHandler((msg) {
       setState(() {
         print("error: $msg");
@@ -150,7 +177,6 @@ class MyAppState extends State<MyApp> {
                         offset: Offset(3.0, 0.0), //(x,y)
                         blurRadius: 3.0),
                   ]),
-
               child: Row(
                 children: <Widget>[
                   pointsText,
@@ -248,7 +274,12 @@ class MyAppState extends State<MyApp> {
                   flex: 1,
                 ),
                 Expanded(
-                  child: wordTyped,
+                  //child: wordTyped,
+                  child: TextFormField(
+                    controller: _typedController,
+                    onFieldSubmitted: _typedSubmitted,
+                  ),
+                  //child: TextField(onSubmitted: _inputS,),
                   flex: 5,
                 ),
                 Expanded(
@@ -291,8 +322,8 @@ class MyAppState extends State<MyApp> {
         imageData[index]['word'],
         style: AppTheme.title,
       );
-      wordListened = Text("");
-      _inputController.clear();
+      wordListened = Text("Say:");
+      _typedController.clear();
     });
     _speakText = imageData[index]['word'];
     _speak();
@@ -337,6 +368,16 @@ class MyAppState extends State<MyApp> {
   void onRecognitionComplete(String text) {
     print('_MyAppState.onRecognitionComplete... $text');
     setState(() => _isListening = false);
+     _checkPoints(text);
+
+  }
+
+  void _typedSubmitted(String text) {
+    print("input submitted:" + _typedController.text);
+    _checkPoints(_typedController.text);
+  }
+
+  void _checkPoints(String text) {
     String A = _speakText.trim().toLowerCase();
     String B = text.trim().toLowerCase();
     //print("---Comparing---[" + A + "]=[" + B + "]");
@@ -353,8 +394,12 @@ class MyAppState extends State<MyApp> {
           pointsText = Text(T, style: AppTheme.display1);
         });
       }
+      //Play sounds reward
+      _soundPoints.play();
+      //_soundReward.play();
     } else {
-      print("not equals");
+      //print("not equals");
+      _speak();
     }
   }
 
