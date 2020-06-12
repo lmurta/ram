@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="4096"
+   viewBox="0 0 4096 4096"
+   width="4096"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="ram3.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   inkscape:export-filename="/home/luciano/Development/ram/logotipos/ram3_4096.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1864"
+     inkscape:window-height="1016"
+     id="namedview8"
+     showgrid="true"
+     inkscape:zoom="0.20849609"
+     inkscape:cx="2048"
+     inkscape:cy="2048"
+     inkscape:window-x="56"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg6">
+    <inkscape:grid
+       type="xygrid"
+       id="grid822"
+       spacingx="2048"
+       spacingy="2048" />
+  </sodipodi:namedview>
+  <rect
+     style="fill:#008080;fill-opacity:1;stroke:none;stroke-width:7.55905533;stroke-miterlimit:4;stroke-dasharray:none"
+     id="rect843"
+     width="4096"
+     height="4096"
+     x="0"
+     y="0" />
+  <path
+     d="m 2489.8993,1562.8351 h -826.9601 c -56.8537,0 -102.8532,46.5163 -102.8532,103.3695 l -0.519,930.3303 206.7402,-206.7402 h 723.5901 c 56.8532,0 103.3695,-46.5163 103.3695,-103.37 v -620.2201 c 0,-56.8532 -46.5163,-103.3695 -103.3695,-103.3695 z m -723.59,361.7948 h 620.2199 V 2028 h -620.2199 z m 413.4797,258.4252 H 1766.3093 V 2079.685 h 413.4797 z m 206.7402,-310.1103 h -620.2199 v -103.3701 h 620.2199 z"
+     id="path4-0"
+     inkscape:connector-curvature="0"
+     style="fill:#000000;stroke-width:51.68500137" />
+  <path
+     d="m 0,4072 h 24 v 24 H 0 Z"
+     id="path2"
+     inkscape:connector-curvature="0"
+     style="fill:none" />
+  <path
+     d="m 2460.7518,1531.1501 h -826.9601 c -56.8537,0 -102.8532,46.5163 -102.8532,103.3695 l -0.519,930.3303 206.7402,-206.7402 h 723.5901 c 56.8532,0 103.3695,-46.5163 103.3695,-103.37 v -620.2201 c 0,-56.8532 -46.5163,-103.3695 -103.3695,-103.3695 z m -723.59,361.7948 h 620.2199 v 103.3701 h -620.2199 z m 413.4797,258.4252 H 1737.1618 V 2048 h 413.4797 z m 206.7402,-310.1103 h -620.2199 v -103.3701 h 620.2199 z"
+     id="path4"
+     inkscape:connector-curvature="0"
+     style="stroke-width:51.68500137;fill:#ffffff" />
+</svg>

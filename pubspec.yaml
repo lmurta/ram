@@ -42,10 +42,9 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "logotipos/ram2_
-  512.png"
+  image_path: "logotipos/ram3_512.png"
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foregoround: "logotipos/ram2_adaptive.png"
+  adaptive_icon_foregoround: "logotipos/ram3_adaptive.png"
     
 flutter_launcher_name:
   name: "Repeat After Me"

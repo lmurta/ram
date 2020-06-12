@@ -12,8 +12,8 @@ void main() {
 //  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
   runApp(MaterialApp(
     theme: ThemeData(
-      primaryColor: Colors.pinkAccent[700],
-      accentColor: Colors.pink,
+      primaryColor: Colors.teal[800],
+      accentColor: Colors.teal,
       textTheme: AppTheme.textTheme,
     ),
     home: MyApp(),
@@ -30,12 +30,11 @@ enum TtsState { playing, stopped }
 class MyAppState extends State<MyApp> {
   int totPoints = 0;
   Text pointsText = Text(
-    "000.000.000",
+    "0",
     style: AppTheme.display1,
   );
   final formatter = new NumberFormat("###,###.###");
   var randomizer = new Random();
-
 
   SpeechRecognition _speech;
   bool _speechRecognitionAvailable = false;
@@ -52,25 +51,17 @@ class MyAppState extends State<MyApp> {
   double _speakRate = 0.5;
   String _speakText;
 
-  Icon iconWord = Icon(
-    Icons.local_library,
-    //size: 20.0,
-  );
+  Icon iconWord = Icon(Icons.local_library);
   Icon iconType = Icon(Icons.keyboard);
   Icon iconSay = Icon(Icons.mic);
   var wordIndex = 0;
   var imageData = [];
 
-  Text wordText = Text(
-    "Read:",
-    style: AppTheme.title,
-  );
-  Text wordListened = Text(
-    "Say:",
-    style: AppTheme.title,
-  );
-
-  TextField textFieldType = TextField(
+  Text wordText = Text("Read:", style: AppTheme.title);
+  Text wordListened = Text("Say:", style: AppTheme.title);
+  static var _inputController = TextEditingController();
+  TextField wordTyped = TextField(
+    controller: _inputController,
     decoration: InputDecoration(
       hintText: "Type:",
       border: OutlineInputBorder(),
@@ -144,24 +135,29 @@ class MyAppState extends State<MyApp> {
         title: Text("Repeat After Me"),
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(6.0),
             child: Container(
-              child: pointsText,
-              padding: const EdgeInsets.all(6.0),
-              alignment: Alignment.center,
+              padding: const EdgeInsets.all(2.0),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5.0),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black,
-                    offset: Offset(3.0, 3.0), //(x,y)
-                    blurRadius: 6.0,
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [Colors.white, Colors.grey],
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.black,
+                        offset: Offset(3.0, 0.0), //(x,y)
+                        blurRadius: 3.0),
+                  ]),
+
+              child: Row(
+                children: <Widget>[
+                  pointsText,
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
       body: Container(
@@ -204,21 +200,28 @@ class MyAppState extends State<MyApp> {
               Row(children: <Widget>[
                 Expanded(
                   child: iconWord,
-                  flex: 2,
+                  flex: 1,
                 ),
                 Expanded(
                   child: wordText,
                   flex: 5,
                 ),
+                Expanded(
+                  child: IconButton(
+                    icon: Icon(Icons.play_arrow),
+                    onPressed: () => _speak(),
+                  ),
+                  flex: 1,
+                ),
               ]),
               Row(children: <Widget>[
                 Expanded(
                   child: iconSay,
-                  flex: 2,
+                  flex: 1,
                 ),
                 Expanded(
                   child: wordListened,
-                  flex: 3,
+                  flex: 5,
                 ),
                 Expanded(
                   child: IconButton(
@@ -229,6 +232,7 @@ class MyAppState extends State<MyApp> {
                   ),
                   flex: 1,
                 ),
+                /*
                 Expanded(
                   child: IconButton(
                     icon: Icon(Icons.stop),
@@ -236,15 +240,16 @@ class MyAppState extends State<MyApp> {
                   ),
                   flex: 1,
                 ),
+                */
               ]),
               Row(children: <Widget>[
                 Expanded(
                   child: iconType,
-                  flex: 2,
+                  flex: 1,
                 ),
                 Expanded(
-                  child: textFieldType,
-                  flex: 4,
+                  child: wordTyped,
+                  flex: 5,
                 ),
                 Expanded(
                   child: Text(''),
@@ -286,10 +291,16 @@ class MyAppState extends State<MyApp> {
         imageData[index]['word'],
         style: AppTheme.title,
       );
+      wordListened = Text("");
+      _inputController.clear();
     });
     _speakText = imageData[index]['word'];
     _speak();
     //new Future.delayed(const Duration(seconds: 5));
+  }
+
+  void onPlayPressed() {
+    _speak();
   }
 
   void onRecognitionResult(String text) {
@@ -328,23 +339,23 @@ class MyAppState extends State<MyApp> {
     setState(() => _isListening = false);
     String A = _speakText.trim().toLowerCase();
     String B = text.trim().toLowerCase();
-    print("---Comparing---["+ A +"]=["+ B+"]");
-    
+    //print("---Comparing---[" + A + "]=[" + B + "]");
+
     if (A == B) {
-      print("iguais");
-      //totPoints++;
-      totPoints += randomizer.nextInt(1000);
-      String T = formatter.format((totPoints));
-      setState(() {
-        pointsText = Text(
-          T,
-          style: AppTheme.display1,
-        );
-      });
-    }else{
+      //print("iguais");
+      int i = randomizer.nextInt(10);
+      i++;
+      String T;
+      for (var j = 0; j < i; j++) {
+        totPoints++;
+        T = formatter.format((totPoints));
+        setState(() {
+          pointsText = Text(T, style: AppTheme.display1);
+        });
+      }
+    } else {
       print("not equals");
     }
-    
   }
 
   void errorHandler() => activateSpeechRecognizer();

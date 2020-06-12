@@ -35,9 +35,9 @@ class AppTheme {
   static const TextStyle display1 = TextStyle( // h4 -> display1
     fontFamily: fontDisplay,
     fontWeight: FontWeight.bold,
-    fontSize: 24,
+    fontSize: 30,
     letterSpacing: 0.1,
-    height: 0.9,
+    //height: 0.9,
     color: darkText,
   );
 
