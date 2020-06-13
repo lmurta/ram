@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math' show Random;
-import 'package:flutter/services.dart';
+//import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:getflutter/getflutter.dart';
@@ -21,9 +21,9 @@ void main() {
     home: MyApp(),
   ));
 }
-  final AssetsAudioPlayer _soundPoints = AssetsAudioPlayer();
-  final AssetsAudioPlayer _soundReward = AssetsAudioPlayer();
-  
+
+final AssetsAudioPlayer _soundPoints = AssetsAudioPlayer();
+final AssetsAudioPlayer _soundReward = AssetsAudioPlayer();
 
 class MyApp extends StatefulWidget {
 //Audio points
@@ -38,7 +38,6 @@ class MyApp extends StatefulWidget {
 enum TtsState { playing, stopped }
 
 class MyAppState extends State<MyApp> {
-  
   int totPoints = 0;
   Text pointsText = Text(
     "0",
@@ -71,7 +70,7 @@ class MyAppState extends State<MyApp> {
   Text wordText = Text("Read:", style: AppTheme.title);
   Text wordListened = Text("Say:", style: AppTheme.title);
   final _typedController = TextEditingController();
-  TextFormField wordTyped = TextFormField(
+  /*TextFormField wordTyped = TextFormField(
     //controller: _typedController,
     decoration: InputDecoration(
       hintText: "Type:",
@@ -85,16 +84,8 @@ class MyAppState extends State<MyApp> {
     keyboardType: TextInputType.text,
     //onSubmitted: ()_inputSubmitted(),
   );
+*/
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
-    _typedController.dispose();
-    _soundPoints.dispose();
-    _soundReward.dispose();
-    super.dispose();
-  }
 
   Audio find(List<Audio> source, String fromPath) {
     return source.firstWhere((element) => element.path == fromPath);
@@ -105,14 +96,22 @@ class MyAppState extends State<MyApp> {
     super.initState();
     initTts();
     activateSpeechRecognizer();
-//audio points
-      _soundPoints.open(Audio("assets/sounds/soundPoints.m4a"));
-      _soundReward.open(Audio("assets/sounds/soundReward.m4a"));
-      _soundReward.setVolume(0.5);
 
-//audio points
+    //audio points
+    _soundPoints.open(Audio("assets/sounds/soundPoints.m4a"));
+    _soundReward.open(Audio("assets/sounds/soundReward.m4a"));
+    _soundReward.setVolume(0.5);
+    //audio points
   }
-
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    _typedController.dispose();
+    _soundPoints.dispose();
+    _soundReward.dispose();
+    super.dispose();
+  }
   // Platform messages are asynchronous, so we initialize in an async method.
   void activateSpeechRecognizer() {
     print('_MyAppState.activateSpeechRecognizer... ');
@@ -157,6 +156,7 @@ class MyAppState extends State<MyApp> {
   }
 
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("Repeat After Me"),
@@ -193,13 +193,11 @@ class MyAppState extends State<MyApp> {
             children: [
               FutureBuilder(
                   future: DefaultAssetBundle.of(context)
-                      .loadString('assets/lessons.json'),
+                      .loadString('assets/lessons/lessons.json'),
                   builder: (context, snapshot) {
                     // Decode the JSON
                     if (snapshot.hasData) {
                       imageData = json.decode(snapshot.data.toString());
-                      //pageChanged(0);
-                      //print(imageData.toString());
                       return GFCarousel(
                         autoPlay: false,
                         items: imageData.map((img) {
@@ -209,7 +207,9 @@ class MyAppState extends State<MyApp> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5.0)),
                               child: Image.asset(
-                                "assets/" + img['image'].toString() + ".jpg",
+                                "assets/lessons/" +
+                                    img['image'].toString() +
+                                    ".jpg",
                                 fit: BoxFit.cover,
                                 width: 1000.0,
                               ),
@@ -258,15 +258,6 @@ class MyAppState extends State<MyApp> {
                   ),
                   flex: 1,
                 ),
-                /*
-                Expanded(
-                  child: IconButton(
-                    icon: Icon(Icons.stop),
-                    onPressed: _isListening ? () => _listenStop() : null,
-                  ),
-                  flex: 1,
-                ),
-                */
               ]),
               Row(children: <Widget>[
                 Expanded(
@@ -274,16 +265,19 @@ class MyAppState extends State<MyApp> {
                   flex: 1,
                 ),
                 Expanded(
-                  //child: wordTyped,
-                  child: TextFormField(
+                  //child: wordTyped.controller(_typedController),
+                  child:  TextFormField(
                     controller: _typedController,
                     onFieldSubmitted: _typedSubmitted,
+                    decoration : AppTheme.inputText1,
                   ),
                   //child: TextField(onSubmitted: _inputS,),
                   flex: 5,
                 ),
                 Expanded(
-                  child: Text(''),
+                  child: IconButton(
+                      icon: Icon(Icons.play_arrow),
+                      onPressed: () => _typedSubmitted(_typedController.text)),
                   flex: 1,
                 ),
               ]),
@@ -322,8 +316,12 @@ class MyAppState extends State<MyApp> {
         imageData[index]['word'],
         style: AppTheme.title,
       );
-      wordListened = Text("Say:");
+      wordListened = Text(
+        "Say:",
+        style: AppTheme.title,
+      );
       _typedController.clear();
+      
     });
     _speakText = imageData[index]['word'];
     _speak();
@@ -368,8 +366,7 @@ class MyAppState extends State<MyApp> {
   void onRecognitionComplete(String text) {
     print('_MyAppState.onRecognitionComplete... $text');
     setState(() => _isListening = false);
-     _checkPoints(text);
-
+    _checkPoints(text);
   }
 
   void _typedSubmitted(String text) {
