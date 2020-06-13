@@ -31,7 +31,7 @@ class AppTheme {
     caption: caption,
   );
   static const InputDecoration inputText1 = InputDecoration(
-    hintStyle: title,
+    hintStyle: subtitle,
     hintText: "Type:",
   //  border: OutlineInputBorder(),
     isDense: true,

@@ -86,7 +86,6 @@ class MyAppState extends State<MyApp> {
   );
 */
 
-
   Audio find(List<Audio> source, String fromPath) {
     return source.firstWhere((element) => element.path == fromPath);
   }
@@ -102,7 +101,10 @@ class MyAppState extends State<MyApp> {
     _soundReward.open(Audio("assets/sounds/soundReward.m4a"));
     _soundReward.setVolume(0.5);
     //audio points
+
+    //pageChanged(0);
   }
+
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
@@ -112,6 +114,7 @@ class MyAppState extends State<MyApp> {
     _soundReward.dispose();
     super.dispose();
   }
+
   // Platform messages are asynchronous, so we initialize in an async method.
   void activateSpeechRecognizer() {
     print('_MyAppState.activateSpeechRecognizer... ');
@@ -156,7 +159,6 @@ class MyAppState extends State<MyApp> {
   }
 
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: Text("Repeat After Me"),
@@ -189,102 +191,113 @@ class MyAppState extends State<MyApp> {
       body: Container(
         child: SingleChildScrollView(
           child: Column(
-            // Use future builder and DefaultAssetBundle to load the local JSON file
-            children: [
-              FutureBuilder(
-                  future: DefaultAssetBundle.of(context)
-                      .loadString('assets/lessons/lessons.json'),
-                  builder: (context, snapshot) {
-                    // Decode the JSON
-                    if (snapshot.hasData) {
-                      imageData = json.decode(snapshot.data.toString());
-                      return GFCarousel(
-                        autoPlay: false,
-                        items: imageData.map((img) {
-                          return Container(
-                            margin: EdgeInsets.all(8.0),
-                            child: ClipRRect(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(5.0)),
-                              child: Image.asset(
-                                "assets/lessons/" +
-                                    img['image'].toString() +
-                                    ".jpg",
-                                fit: BoxFit.cover,
-                                width: 1000.0,
+              // Use future builder and DefaultAssetBundle to load the local JSON file
+              children: [
+                FutureBuilder(
+                    future: DefaultAssetBundle.of(context)
+                        .loadString('assets/lessons/lessons.json'),
+                    builder: (context, snapshot) {
+                      // Decode the JSON
+                      if (snapshot.hasData) {
+                        imageData = json.decode(snapshot.data.toString());
+                        return GFCarousel(
+                          autoPlay: false,
+                          items: imageData.map((img) {
+                            return Container(
+                              margin: EdgeInsets.all(8.0),
+                              child: ClipRRect(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5.0)),
+                                child: Image.asset(
+                                  "assets/lessons/" +
+                                      img['image'].toString() +
+                                      ".jpg",
+                                  fit: BoxFit.cover,
+                                  width: 1000.0,
+                                ),
                               ),
-                            ),
-                          );
-                        }).toList(),
-                        onPageChanged: pageChanged,
-                      );
-                      //pageChanged(0);
-                    } else {
-                      return new CircularProgressIndicator();
-                    }
-                  }),
-              Row(children: <Widget>[
-                Expanded(
-                  child: iconWord,
-                  flex: 1,
-                ),
-                Expanded(
-                  child: wordText,
-                  flex: 5,
-                ),
-                Expanded(
-                  child: IconButton(
-                    icon: Icon(Icons.play_arrow),
-                    onPressed: () => _speak(),
+                            );
+                          }).toList(),
+                          onPageChanged: pageChanged,
+                        );
+                      } else {
+                        return new CircularProgressIndicator();
+                      }
+                    }),
+                Row(children: <Widget>[
+                  Expanded(
+                    child: iconWord,
+                    flex: 1,
                   ),
-                  flex: 1,
-                ),
-              ]),
-              Row(children: <Widget>[
-                Expanded(
-                  child: iconSay,
-                  flex: 1,
-                ),
-                Expanded(
-                  child: wordListened,
-                  flex: 5,
-                ),
-                Expanded(
-                  child: IconButton(
-                    icon: Icon(Icons.play_arrow),
-                    onPressed: _speechRecognitionAvailable && !_isListening
-                        ? () => _listenStart()
-                        : null,
+                  Expanded(
+                    child: wordText,
+                    flex: 5,
                   ),
-                  flex: 1,
-                ),
-              ]),
-              Row(children: <Widget>[
-                Expanded(
-                  child: iconType,
-                  flex: 1,
-                ),
-                Expanded(
-                  //child: wordTyped.controller(_typedController),
-                  child:  TextFormField(
-                    controller: _typedController,
-                    onFieldSubmitted: _typedSubmitted,
-                    decoration : AppTheme.inputText1,
-                  ),
-                  //child: TextField(onSubmitted: _inputS,),
-                  flex: 5,
-                ),
-                Expanded(
-                  child: IconButton(
+                  Expanded(
+                    child: IconButton(
                       icon: Icon(Icons.play_arrow),
-                      onPressed: () => _typedSubmitted(_typedController.text)),
-                  flex: 1,
-                ),
+                      onPressed: () => _speak(),
+                    ),
+                    flex: 1,
+                  ),
+                ]),
+                Row(children: <Widget>[
+                  Expanded(
+                    child: iconSay,
+                    flex: 1,
+                  ),
+                  Expanded(
+                    child: wordListened,
+                    flex: 5,
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      icon: Icon(Icons.play_arrow),
+                      onPressed: _speechRecognitionAvailable && !_isListening
+                          ? () => _listenStart()
+                          : null,
+                    ),
+                    flex: 1,
+                  ),
+                ]),
+                Row(children: <Widget>[
+                  Expanded(
+                    child: iconType,
+                    flex: 1,
+                  ),
+                  Expanded(
+                    //child: wordTyped.controller(_typedController),
+                    child: TextFormField(
+                      controller: _typedController,
+                      onFieldSubmitted: _typedSubmitted,
+                      decoration: AppTheme.inputText1,
+                    ),
+                    //child: TextField(onSubmitted: _inputS,),
+                    flex: 5,
+                  ),
+                  Expanded(
+                    child: IconButton(
+                        icon: Icon(Icons.play_arrow),
+                        onPressed: () =>
+                            _typedSubmitted(_typedController.text)),
+                    flex: 1,
+                  ),
+                ]),
+                /////////////////
+                Column(children: [
+                  Text("teste"),
+                ]),
+                /////////////////////
               ]),
-            ],
-          ),
         ),
       ),
+    );
+  }
+
+  Widget lessonsCard() {
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Text('Hello World!'),
     );
   }
 
@@ -318,10 +331,9 @@ class MyAppState extends State<MyApp> {
       );
       wordListened = Text(
         "Say:",
-        style: AppTheme.title,
+        style: AppTheme.subtitle,
       );
       _typedController.clear();
-      
     });
     _speakText = imageData[index]['word'];
     _speak();
