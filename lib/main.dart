@@ -9,6 +9,7 @@ import './theme.dart';
 import 'package:audiofileplayer/audiofileplayer.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter_speech/flutter_speech.dart';
+import './screen_iap.dart';
 
 ///Sound Play
 Audio _soundPoints = Audio.load('assets/sounds/soundPoints.m4a');
@@ -115,6 +116,9 @@ class MyAppState extends State<MyApp> {
         accentColor: Colors.teal,
         textTheme: AppTheme.textTheme,
       ),
+      routes: {
+        'screen_iap': (ctx) => IapScreen(),
+      },
       home: new Scaffold(
         appBar: myAppBar(), //AppBar(title: Text("RAM2")),
         body: Container(
@@ -225,8 +229,9 @@ class MyAppState extends State<MyApp> {
                     child: IconButton(
                       padding: new EdgeInsets.all(0.0),
                       icon: Icon(Icons.play_arrow),
-                      onPressed: 
-                      _speechRecognitionAvailable && !_isListening ? () => _listenStart()       : null,
+                      onPressed: _speechRecognitionAvailable && !_isListening
+                          ? () => _listenStart()
+                          : null,
                     ),
                   ),
                   flex: 1),
@@ -318,6 +323,10 @@ class MyAppState extends State<MyApp> {
             fit: BoxFit.cover),
         onTap: () {
           print("Tap on: " + index.toString());
+          Navigator.of(context).pushNamed('screen_iap',);
+          //Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          //  return IapScreen();
+          //}));
         },
         title: Text(
           _listIndex[index]['word'],
@@ -361,20 +370,24 @@ class MyAppState extends State<MyApp> {
       setState(() => _speechRecognitionAvailable = res);
     });
   }
+
   void onSpeechAvailability(bool result) =>
       setState(() => _speechRecognitionAvailable = result);
   void onRecognitionStarted() {
     setState(() => _isListening = true);
   }
+
   void onRecognitionComplete(String text) {
     print('_MyAppState.onRecognitionComplete... $text');
     setState(() => _isListening = false);
     _checkPoints(text);
   }
-    void _listenStop() => _mySpeechRecognition.stop().then((_) {
+
+  void _listenStop() => _mySpeechRecognition.stop().then((_) {
         setState(() => _isListening = false);
       });
-  void _listenStart() => _mySpeechRecognition.activate(_selectedlanguage).then((_) {
+  void _listenStart() =>
+      _mySpeechRecognition.activate(_selectedlanguage).then((_) {
         return _mySpeechRecognition.listen().then((result) {
           print('_MyAppState.start => result $result');
           setState(() {
@@ -382,7 +395,7 @@ class MyAppState extends State<MyApp> {
           });
         });
       });
-    void onRecognitionResult(String text) {
+  void onRecognitionResult(String text) {
     print('_MyAppState.onRecognitionResult... $text');
     setState(() {
       wordListened = Text(
@@ -391,7 +404,8 @@ class MyAppState extends State<MyApp> {
       );
     });
   }
-    void errorHandler() => activateSpeechRecognizer();
+
+  void errorHandler() => activateSpeechRecognizer();
 
   ///Speech Recognition
   ///TextToSpeak

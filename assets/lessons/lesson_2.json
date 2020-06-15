@@ -2,18 +2,21 @@
 {
   "lesson": "lesson_2",
   "word": "Flower",
+  "altword": "",
   "image": "flower",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_2",
   "word": "Cat",
+  "altword": "",
   "image": "cat",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_2",
   "word": "Cat",
+  "altword": "",
   "image": "cat",
   "description": "Some description"
 }

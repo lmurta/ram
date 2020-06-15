@@ -2,30 +2,35 @@
 {
   "lesson": "index",
   "word": "Sample lessons",
+  "altword": "",
   "image": "flower",
   "description": "Some description"
 }
 ,{
   "lesson": "index",
   "word": "Objects",
+  "altword": "",
   "image": "cat",
   "description": "Some description"
 }
 ,{
   "lesson": "index",
   "word": "Numeral",
+  "altword": "",
   "image": "eagle",
   "description": "Some description"
 }
 ,{
   "lesson": "index",
   "word": "Teste",
+  "altword": "",
   "image": "flower",
   "description": "Some description"
 }
 ,{
   "lesson": "index",
   "word": "teste2",
+  "altword": "",
   "image": "tree",
   "description": "Some description"
 }

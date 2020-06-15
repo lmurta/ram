@@ -1,21 +1,25 @@
-lesson,word,image,description
-index,Sample lessons,flower,Some description
-index,Objects,cat,Some description
-index,Numeral,eagle,Some description
-index,Teste,flower,Some description
-index,teste2,tree,Some description
-lesson_0,Flower,flower,Some description
-lesson_0,Cat,cat,Some description
-lesson_0,Eagle,eagle,Some description
-lesson_0,Bird,bird,Some description
-lesson_0,Tree,tree,Some description
-lesson_0,Water,water,Some description
-lesson_0,This is a cat,cat,Some description
-lesson_1,Cat,cat,Some description
-lesson_1,Eagle,eagle,Some description
-lesson_2,Flower,flower,Some description
-lesson_2,Cat,cat,Some description
-lesson_2,Cat,cat,Some description
-lesson_3,Cat,cat,Some description
-lesson_4,Cat,cat,Some description
-lesson_5,Cat,cat,Some description
+lesson,word,altword,image,description
+index,Sample lessons,,flower,Some description
+index,Objects,,cat,Some description
+index,Numeral,,eagle,Some description
+index,Teste,,flower,Some description
+index,teste2,,tree,Some description
+lesson_0,Flower,,flower,Some description
+lesson_0,Cat,,cat,Some description
+lesson_0,Eagle,,eagle,Some description
+lesson_0,Bird,,bird,Some description
+lesson_0,Tree,,tree,Some description
+lesson_0,Water,,water,Some description
+lesson_0,This is a cat,,cat,Some description
+lesson_0,Car,,car_red,A red car
+lesson_0,This is a car,,car_red,A red car
+lesson_0,This car is red,,car_red,A red car
+lesson_0,What color is the car?,what color is the car,car_red,A red car
+lesson_1,Cat,,cat,Some description
+lesson_1,Eagle,,eagle,Some description
+lesson_2,Flower,,flower,Some description
+lesson_2,Cat,,cat,Some description
+lesson_2,Cat,,cat,Some description
+lesson_3,Cat,,cat,Some description
+lesson_4,Cat,,cat,Some description
+lesson_5,Cat,,cat,Some description

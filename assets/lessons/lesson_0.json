@@ -2,43 +2,78 @@
 {
   "lesson": "lesson_0",
   "word": "Flower",
+  "altword": "",
   "image": "flower",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_0",
   "word": "Cat",
+  "altword": "",
   "image": "cat",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_0",
   "word": "Eagle",
+  "altword": "",
   "image": "eagle",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_0",
   "word": "Bird",
+  "altword": "",
   "image": "bird",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_0",
   "word": "Tree",
+  "altword": "",
   "image": "tree",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_0",
   "word": "Water",
+  "altword": "",
   "image": "water",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_0",
   "word": "This is a cat",
+  "altword": "",
   "image": "cat",
   "description": "Some description"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "Car",
+  "altword": "",
+  "image": "car_red",
+  "description": "A red car"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "This is a car",
+  "altword": "",
+  "image": "car_red",
+  "description": "A red car"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "This car is red",
+  "altword": "",
+  "image": "car_red",
+  "description": "A red car"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "What color is the car?",
+  "altword": "what color is the car",
+  "image": "car_red",
+  "description": "A red car"
 }
 ]
