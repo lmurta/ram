@@ -116,44 +116,48 @@ class MyAppState extends State<MyApp> {
         accentColor: Colors.teal,
         textTheme: AppTheme.textTheme,
       ),
-      routes: {
+      routes: <String, WidgetBuilder>{
         'screen_iap': (ctx) => IapScreen(),
       },
       home: new Scaffold(
         appBar: myAppBar(), //AppBar(title: Text("RAM2")),
-        body: Container(
-          margin: EdgeInsets.all(0.0),
-          decoration: BoxDecoration(
+        drawer: myDrawer(),
+        body: Builder(
+          builder: (context) => Container(
+            margin: EdgeInsets.all(0.0),
+            decoration: BoxDecoration(
 //            color: Colors.green,
-              ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  //decoration: BoxDecoration(color: Colors.red),
-                  width: double.infinity,
-                  child: //Text("top"),
-                      _isLessonLoaded
-                          ? _buildLessonCarousel()
-                          : new Center(child: new CircularProgressIndicator()),
                 ),
-                Container(
-                  width: double.infinity,
-                  child: _buildInputArea(),
-                ),
-                Container(
-                  height: 200,
-                  child: Column(
-                      //decoration: BoxDecoration(color: Colors.blue),
-                      //width: double.infinity,
-                      children: <Widget>[
-                        _isListLoaded
-                            ? _buildListLessons()
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    //decoration: BoxDecoration(color: Colors.red),
+                    width: double.infinity,
+                    child: //Text("top"),
+                        _isLessonLoaded
+                            ? _buildLessonCarousel()
                             : new Center(
                                 child: new CircularProgressIndicator()),
-                      ]),
-                ),
-              ],
+                  ),
+                  Container(
+                    width: double.infinity,
+                    child: _buildInputArea(),
+                  ),
+                  Container(
+                    height: 200,
+                    child: Column(
+                        //decoration: BoxDecoration(color: Colors.blue),
+                        //width: double.infinity,
+                        children: <Widget>[
+                          _isListLoaded
+                              ? _buildListLessons()
+                              : new Center(
+                                  child: new CircularProgressIndicator()),
+                        ]),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -189,6 +193,26 @@ class MyAppState extends State<MyApp> {
             ),
           ),
         ],
+      );
+  Drawer myDrawer() => Drawer(
+        child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Colors.teal,
+            ),
+            child: Text("Header"),
+          ),
+          ListTile(
+              title: Text("Item1"),
+              onTap: () {
+                Navigator.pop(context);
+              }),
+          ListTile(
+              title: Text("Item2"),
+              onTap: () {
+                Navigator.pop(context);
+              })
+        ]),
       );
 
   Widget _buildInputArea() {
@@ -323,7 +347,9 @@ class MyAppState extends State<MyApp> {
             fit: BoxFit.cover),
         onTap: () {
           print("Tap on: " + index.toString());
-          Navigator.of(context).pushNamed('screen_iap',);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => IapScreen()));
+          //Navigator.of(context).pushNamed('screen_iap',);
           //Navigator.of(context).push(MaterialPageRoute(builder: (context) {
           //  return IapScreen();
           //}));
