@@ -75,6 +75,7 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   bool _isListLoaded = false;
   bool _isLessonLoaded = false;
   @override
@@ -141,15 +142,60 @@ class MyAppState extends State<MyApp> {
           ),
         ),
       );
+  Builder myBuilder3() => Builder(
+        builder: (context) => Center(
+          ////////////////////////
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  //decoration: BoxDecoration(color: Colors.red),
+                  width: double.infinity,
+                  child: //Text("top"),
+                      _isLessonLoaded
+                          ? _buildLessonCarousel()
+                          : new Center(child: new CircularProgressIndicator()),
+                ),
+                Container(
+                  width: double.infinity,
+                  child: _buildInputArea(),
+                ),
+                Container(
+                  height: 200,
+                  child: Column(
+                      //decoration: BoxDecoration(color: Colors.blue),
+                      //width: double.infinity,
+                      children: <Widget>[
+                        _isListLoaded
+                            ? _buildListLessons()
+                            : new Center(
+                                child: new CircularProgressIndicator()),
+                      ]),
+                ),
+              ],
+            ),
+          ),
+
+          /////////////////////
+        ),
+      );
   Scaffold myScaffold2() => Scaffold(
+            key: _scaffoldKey,
+
         appBar: myAppBar(),
         drawer: myDrawer(),
-        body: myBuilder2(),
+        body: myBuilder3(),
       );
+  void _showSnackBar(String message) {
+    _scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(message),
+    ));
+  }
 
   Scaffold myScaffold() => Scaffold(
         //scaffold
-        appBar: myAppBar(), //AppBar(title: Text("RAM2")),
+        key: _scaffoldKey,
+        appBar: myAppBar(),
         drawer: myDrawer(),
         body: Builder(
           builder: (context) => Container(
@@ -223,17 +269,18 @@ class MyAppState extends State<MyApp> {
           ),
         ],
       );
-  Drawer myDrawer() => Drawer(child: Builder(
-      builder: (context) => Center(
-            child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-              DrawerHeader(child: Text("Header")),
-              ListTile(
-                  title: Text("Item1fff"),
-                  onTap: () {
-                    Navigator.pushNamed(context, "/IapScreen");
-                  })
-            ]),
-          )));
+  Drawer myDrawer() => Drawer(
+      child: Builder(
+          builder: (context) => Center(
+                child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+                  DrawerHeader(child: Text("Header")),
+                  ListTile(
+                      title: Text("Item1fff"),
+                      onTap: () {
+                        Navigator.pushNamed(context, "/IapScreen");
+                      })
+                ]),
+              )));
 
   Widget _buildInputArea() {
     return new Container(
@@ -348,7 +395,6 @@ class MyAppState extends State<MyApp> {
             margin: new EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
             child: Container(
 //              padding: EdgeInsets.all(0.0),
-//              decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
               decoration: BoxDecoration(color: Color.fromRGBO(64, 75, 96, .9)),
               child: makeListTile(index),
             ),
@@ -546,6 +592,7 @@ class MyAppState extends State<MyApp> {
       }
       //Play sounds reward
       _soundPoints.play();
+      _showSnackBar("Congratulations!");
       //_soundReward.play();
     } else {
       //print("not equals");
