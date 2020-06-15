@@ -1,0 +1,20 @@
+[
+{
+  "lesson": "lesson_2",
+  "word": "Flower",
+  "image": "flower",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Cat",
+  "image": "cat",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Cat",
+  "image": "cat",
+  "description": "Some description"
+}
+]

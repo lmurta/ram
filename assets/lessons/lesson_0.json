@@ -1,0 +1,44 @@
+[
+{
+  "lesson": "lesson_0",
+  "word": "Flower",
+  "image": "flower",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "Cat",
+  "image": "cat",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "Eagle",
+  "image": "eagle",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "Bird",
+  "image": "bird",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "Tree",
+  "image": "tree",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "Water",
+  "image": "water",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_0",
+  "word": "This is a cat",
+  "image": "cat",
+  "description": "Some description"
+}
+]
