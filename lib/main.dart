@@ -180,8 +180,7 @@ class MyAppState extends State<MyApp> {
         ),
       );
   Scaffold myScaffold2() => Scaffold(
-            key: _scaffoldKey,
-
+        key: _scaffoldKey,
         appBar: myAppBar(),
         drawer: myDrawer(),
         body: myBuilder3(),
@@ -212,8 +211,12 @@ class MyAppState extends State<MyApp> {
                     child: //Text("top"),
                         _isLessonLoaded
                             ? _buildLessonCarousel()
-                            : new Center(
-                                child: new CircularProgressIndicator()),
+                            : Expanded(
+                              
+                              child: new Center(
+                                
+                                  child: new CircularProgressIndicator()),
+                            ),
                   ),
                   Container(
                     width: double.infinity,
@@ -242,7 +245,7 @@ class MyAppState extends State<MyApp> {
 
   AppBar myAppBar() => AppBar(
         title: Text("Repeat After Me"),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.teal[800],
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.all(6.0),
@@ -273,10 +276,19 @@ class MyAppState extends State<MyApp> {
       child: Builder(
           builder: (context) => Center(
                 child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-                  DrawerHeader(child: Text("Header")),
+                  DrawerHeader(
+                    child: Text(""),
+                    decoration: BoxDecoration(
+                      color: Colors.teal[900],
+                      image: DecorationImage(image: AssetImage("assets/lessons/knowledge.jpg"),
+                      fit: BoxFit.cover)
+                    ),
+                  ),
                   ListTile(
                       title: Text("Item1fff"),
+                      trailing: Icon(Icons.arrow_forward),
                       onTap: () {
+                        Navigator.of(context).pop();
                         Navigator.pushNamed(context, "/IapScreen");
                       })
                 ]),
