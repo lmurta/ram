@@ -82,7 +82,6 @@ class MyAppState extends State<MyApp> {
     super.initState();
     initTts();
     activateSpeechRecognizer();
-
     _loadIndex().then((s) => setState(() {
           _isListLoaded = true;
         }));
@@ -90,7 +89,6 @@ class MyAppState extends State<MyApp> {
           pageChanged(0);
           _isLessonLoaded = true;
         }));
-
     //audio points
     _soundReward.setVolume(0.5);
     //_soundReward.play();
@@ -116,10 +114,41 @@ class MyAppState extends State<MyApp> {
         accentColor: Colors.teal,
         textTheme: AppTheme.textTheme,
       ),
-      routes: <String, WidgetBuilder>{
-        'screen_iap': (ctx) => IapScreen(),
+
+//      home: new Scaffold(),
+      home:
+          //myBuilder()
+          myScaffold2(),
+      routes: {
+        '/IapScreen': (context) => IapScreen(),
       },
-      home: new Scaffold(
+    );
+  }
+
+  Builder myBuilder() => Builder(
+        builder: (context) => Center(
+          child: RaisedButton(
+            child: Text("Foo"),
+            onPressed: () => Navigator.pushNamed(context, "/"),
+          ),
+        ),
+      );
+  Builder myBuilder2() => Builder(
+        builder: (context) => Center(
+          child: RaisedButton(
+            child: Text("Foo2"),
+            onPressed: () => Navigator.pushNamed(context, "/IapScreen"),
+          ),
+        ),
+      );
+  Scaffold myScaffold2() => Scaffold(
+        appBar: myAppBar(),
+        drawer: myDrawer(),
+        body: myBuilder2(),
+      );
+
+  Scaffold myScaffold() => Scaffold(
+        //scaffold
         appBar: myAppBar(), //AppBar(title: Text("RAM2")),
         drawer: myDrawer(),
         body: Builder(
@@ -161,9 +190,9 @@ class MyAppState extends State<MyApp> {
             ),
           ),
         ),
-      ),
-    );
-  }
+
+        //scaffold
+      );
 
   AppBar myAppBar() => AppBar(
         title: Text("Repeat After Me"),
@@ -194,26 +223,17 @@ class MyAppState extends State<MyApp> {
           ),
         ],
       );
-  Drawer myDrawer() => Drawer(
-        child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.teal,
-            ),
-            child: Text("Header"),
-          ),
-          ListTile(
-              title: Text("Item1"),
-              onTap: () {
-                Navigator.pop(context);
-              }),
-          ListTile(
-              title: Text("Item2"),
-              onTap: () {
-                Navigator.pop(context);
-              })
-        ]),
-      );
+  Drawer myDrawer() => Drawer(child: Builder(
+      builder: (context) => Center(
+            child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+              DrawerHeader(child: Text("Header")),
+              ListTile(
+                  title: Text("Item1fff"),
+                  onTap: () {
+                    Navigator.pushNamed(context, "/IapScreen");
+                  })
+            ]),
+          )));
 
   Widget _buildInputArea() {
     return new Container(
