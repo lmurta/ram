@@ -127,37 +127,36 @@ class MyAppState extends State<MyApp> {
   Builder myBuilder() => Builder(
         builder: (context) => Center(
           ////////////////////////
-          child: SingleChildScrollView(
+          //child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Container(
-                  //decoration: BoxDecoration(color: Colors.red),
+                Container(//top
+                  //color: Colors.green,
                   width: double.infinity,
                   child: //Text("top"),
                       _isLessonLoaded
                           ? _buildLessonCarousel()
                           : new Center(child: new CircularProgressIndicator()),
-                ),
-                Container(
+                ),//top
+                Container(//middle
                   width: double.infinity,
+                  height: 120,
+                  //color: Colors.red,
                   child: _buildInputArea(),
-                ),
-                Container(
-                  height: 200,
-                  child: Column(
-                      //decoration: BoxDecoration(color: Colors.blue),
-                      //width: double.infinity,
-                      children: <Widget>[
-                        _isListLoaded
-                            ? _buildListLessons()
-                            : new Center(
-                                child: new CircularProgressIndicator()),
-                      ]),
-                ),
+                ),//middle
+                Expanded(flex:1,child: 
+                Container(//bot
+                  //color: Colors.amber,
+                  child: Column(children: <Widget>[
+                    _isListLoaded
+                        ? _buildListLessons()
+                        : new Center(child: new CircularProgressIndicator()),
+                  ]),
+                )
+                ),//bot
               ],
             ),
-          ),
-
+          //),
           /////////////////////
         ),
       );
@@ -418,7 +417,7 @@ class MyAppState extends State<MyApp> {
               " : " +
               _currentLessonList.length.toString());
           if (_currentCarrouselPage >= _currentLessonList.length) {
-            _currentCarrouselPage = _currentLessonList.length -1;
+            _currentCarrouselPage = _currentLessonList.length - 1;
           }
           pageChanged(_currentCarrouselPage);
           _isLessonLoaded = true;
