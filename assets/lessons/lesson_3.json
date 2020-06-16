@@ -1,9 +1,16 @@
 [
 {
   "lesson": "lesson_3",
-  "word": "Cat",
+  "word": "Dog",
   "altword": "",
-  "image": "cat",
+  "image": "dog",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_3",
+  "word": "This is a dog",
+  "altword": "",
+  "image": "dog",
   "description": "Some description"
 }
 ]

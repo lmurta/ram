@@ -24,7 +24,6 @@ TtsState ttsState = TtsState.stopped;
 double _speakVolume = 0.5;
 double _speakPitch = 1.0;
 double _speakRate = 0.5;
-String _speakText;
 String _selectedlanguage = 'en-US';
 
 ///Text To Speak
@@ -46,25 +45,28 @@ Text wordText = Text("Read:", style: AppTheme.title);
 Text wordListened = Text("Say:", style: AppTheme.title);
 final _typedController = TextEditingController();
 
-List _listIndex;
-List _listLesson;
-int _currentWord = 1;
-String _currentLesson = "lesson_"+_currentWord.toString();
+List _indexOfLessons;
+int _currentIndex = 0;
+
+List _currentLessonList;
+String _currentWord ="";
+String _currentLessonFile = "lesson_"+_currentIndex.toString();
+//GFCarousel _lessonCarousel = new GFCarousel(items: null);
 
 
 Future _loadIndex() async {
   //print("Local Assets:");
   String jsonString = await rootBundle.loadString('assets/lessons/index.json');
-  _listIndex = json.decode(jsonString);
-  //print("Json" + _listIndex.toString());
+  _indexOfLessons = json.decode(jsonString);
+  //print("Json" + _indexOfLessons.toString());
 }
 
 Future _loadLesson() async {
   //print("Local Assets:");
   String jsonString =
-      await rootBundle.loadString('assets/lessons/' + _currentLesson + '.json');
-  _listLesson = json.decode(jsonString);
-  //print("Json" + _listLesson.toString());
+      await rootBundle.loadString('assets/lessons/' + _currentLessonFile + '.json');
+  _currentLessonList = json.decode(jsonString);
+  //print("Json" + _currentLessonList.toString());
 }
 
 void main() => runApp(MyApp());
@@ -373,9 +375,10 @@ class MyAppState extends State<MyApp> {
     ]);
   }
 
-  GFCarousel makeGFCarousel() => GFCarousel(
+//  GFCarousel makeGFCarousel() => new GFCarousel(
+  GFCarousel makeGFCarousel() => new GFCarousel(
         autoPlay: false,
-        items: _listLesson.map((img) {
+        items: _currentLessonList.map((img) {
           return Container(
             margin: EdgeInsets.all(8.0),
             child: ClipRRect(
@@ -396,7 +399,7 @@ class MyAppState extends State<MyApp> {
       child: new ListView.builder(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        itemCount: _listIndex.length,
+        itemCount: _indexOfLessons.length,
         itemBuilder: (BuildContext context, int index) {
           return new Card(
             shape: RoundedRectangleBorder(
@@ -418,7 +421,7 @@ class MyAppState extends State<MyApp> {
   ListTile makeListTile(index) => ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 00.0, vertical: 0.0),
         leading: Image.asset(
-            "assets/lessons/" + _listIndex[index]['image'] + ".jpg",
+            "assets/lessons/" + _indexOfLessons[index]['image'] + ".jpg",
             width: 80,
             height: 200,
             fit: BoxFit.cover),
@@ -427,7 +430,7 @@ class MyAppState extends State<MyApp> {
           _changeLessonTo(index);
         },
         title: Text(
-          _listIndex[index]['word'],
+          _indexOfLessons[index]['word'],
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -441,7 +444,7 @@ class MyAppState extends State<MyApp> {
 //              color: Colors.teal,
             ),
             Text(
-              _listIndex[index]['description'],
+              _indexOfLessons[index]['description'],
               style: TextStyle(
                 color: Colors.grey[200],
               ),
@@ -456,19 +459,26 @@ class MyAppState extends State<MyApp> {
       );
 
   Future _changeLessonTo(int index) async {
+    print("Changing lesson from :"+_currentLessonFile);
+    print("Changing lesson from :"+_currentWord);
     _isLessonLoaded = false;
-    _currentLesson = "lesson_"+ index.toString();
-    _listLesson.clear();
+    _currentLessonFile = "lesson_"+ index.toString();
+    _currentLessonList.clear();
+    
     String jsonString = await rootBundle
-        .loadString('assets/lessons/' + _currentLesson + '.json');
-    _listLesson = json.decode(jsonString);
+        .loadString('assets/lessons/' + _currentLessonFile + '.json');
+    _currentLessonList = json.decode(jsonString);
 
     _loadLesson().then((s) => setState(() {
-          pageChanged(index);
+          pageChanged(0);
           _isLessonLoaded = true;
+          _currentWord = _currentLessonList[0]['word'];
+          print("Changing lesson to :"+_currentLessonFile);
+          print("Changing lesson to :"+_currentWord);
+    
         }));
 
-    //print("Json" + _listLesson.toString());
+    //print("Json" + _currentLessonList.toString());
   }
 
   ///SpeechRecognition
@@ -559,9 +569,9 @@ class MyAppState extends State<MyApp> {
     await _myFlutterTts.setSpeechRate(_speakRate);
     await _myFlutterTts.setPitch(_speakPitch);
 
-    if (_speakText != null) {
-      if (_speakText.isNotEmpty) {
-        var result = await _myFlutterTts.speak(_speakText);
+    if (_currentWord != null) {
+      if (_currentWord.isNotEmpty) {
+        var result = await _myFlutterTts.speak(_currentWord);
         if (result == 1) setState(() => ttsState = TtsState.playing);
       }
     }
@@ -572,10 +582,10 @@ class MyAppState extends State<MyApp> {
   void pageChanged(int index) {
     _listenStop();
     //print("index:" + index.toString());
-    _currentWord = index;
+    //_currentIndex = index;
     setState(() {
       wordText = Text(
-        _listLesson[_currentWord]['word'],
+        _currentLessonList[index]['word'],
         style: AppTheme.title,
       );
       wordListened = Text(
@@ -584,7 +594,7 @@ class MyAppState extends State<MyApp> {
       );
       _typedController.clear();
     });
-    _speakText = _listLesson[_currentWord]['word'];
+    _currentWord = _currentLessonList[index]['word'];
     _speak();
     //new Future.delayed(const Duration(seconds: 5));
   }
@@ -596,7 +606,7 @@ class MyAppState extends State<MyApp> {
   }
 
   void _checkPoints(String text) {
-    String A = _speakText.trim().toLowerCase();
+    String A = _currentWord.trim().toLowerCase();
     String B = text.trim().toLowerCase();
     //print("---Comparing---[" + A + "]=[" + B + "]");
 

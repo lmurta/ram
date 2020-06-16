@@ -8,13 +8,6 @@
 }
 ,{
   "lesson": "index",
-  "word": "Objects",
-  "altword": "",
-  "image": "cat",
-  "description": "Some description"
-}
-,{
-  "lesson": "index",
   "word": "Persons",
   "altword": "",
   "image": "boy_girl",

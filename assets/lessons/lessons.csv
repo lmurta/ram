@@ -1,6 +1,5 @@
 lesson,word,altword,image,description
 index,Sample lessons,,flower,Some description
-index,Objects,,cat,Some description
 index,Persons,,boy_girl,Some description
 index,Teste,,flower,Some description
 index,teste2,,tree,Some description
@@ -21,6 +20,5 @@ lesson_1,A boy and a girl,,boy_girl,Some description
 lesson_1,Man,,man,Some description
 lesson_1,Woman,,woman,Some description
 lesson_2,Cat,,cat,Some description
-lesson_3,Cat,,cat,Some description
-lesson_4,Cat,,cat,Some description
-lesson_5,Cat,,cat,Some description
+lesson_3,Dog,,dog,Some description
+lesson_3,This is a dog,,dog,Some description
