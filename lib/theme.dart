@@ -23,7 +23,7 @@ class AppTheme {
 
   static const TextTheme textTheme = TextTheme(
     headline4: display1,
-    headline5: headline,
+    headline5: snackbarStyle,
     headline6: title,
     subtitle2: subtitle,
     bodyText2: body2,
@@ -37,18 +37,7 @@ class AppTheme {
     isDense: true,
     contentPadding: const EdgeInsets.all(3.0),
   );
-/*
-    decoration: InputDecoration(
-      hintText: "Type:",
-      border: OutlineInputBorder(),
-      isDense: true,
-      contentPadding: const EdgeInsets.all(3.0),
-    ),
-    style: AppTheme.title,
-    autocorrect: false,
-    enableSuggestions: false,
-    keyboardType: TextInputType.text,
-*/
+
 
   static const TextStyle display1 = TextStyle(
     // h4 -> display1
@@ -60,13 +49,14 @@ class AppTheme {
     color: darkText,
   );
 
-  static const TextStyle headline = TextStyle(
+  static const TextStyle snackbarStyle = TextStyle(
     // h5 -> headline
     fontFamily: fontName,
     fontWeight: FontWeight.bold,
     fontSize: 24,
     letterSpacing: 0.27,
-    color: darkerText,
+    color: Colors.white,
+    
   );
 
   static const TextStyle title = TextStyle(

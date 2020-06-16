@@ -174,21 +174,24 @@ class MyAppState extends State<MyApp> {
                   )), //bot
             ],
           ),
-          //),
+          //),//Scroolview
           /////////////////////
         ),
       );
   Scaffold myScaffold() => Scaffold(
         key: _scaffoldKey,
+        resizeToAvoidBottomInset: false, //TODO bug do scroolview workaround
         appBar: myAppBar(),
         drawer: myDrawer(),
         body: myBuilder(),
       );
   void _showSnackBar(String message) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: Colors.blue,
       content: Text(
         _congratulation[randomizer.nextInt(_congratulation.length)],
-        style: AppTheme.textTheme.headline4,
+        style: AppTheme.textTheme.headline5,
       ),
     ));
   }
@@ -271,25 +274,7 @@ class MyAppState extends State<MyApp> {
               ]),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Row(children: <Widget>[
-              Expanded(child: iconSay, flex: 1),
-              Expanded(child: wordListened, flex: 5),
-              Expanded(
-                  child: new SizedBox(
-                    height: 28.0,
-                    child: IconButton(
-                      padding: new EdgeInsets.all(0.0),
-                      icon: Icon(Icons.play_arrow),
-                      onPressed: _speechRecognitionAvailable && !_isListening
-                          ? () => _listenStart()
-                          : null,
-                    ),
-                  ),
-                  flex: 1),
-            ]),
-          ),
+
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Row(children: <Widget>[
@@ -313,6 +298,26 @@ class MyAppState extends State<MyApp> {
                 ),
                 flex: 1,
               ),
+
+            ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Row(children: <Widget>[
+              Expanded(child: iconSay, flex: 1),
+              Expanded(child: wordListened, flex: 5),
+              Expanded(
+                  child: new SizedBox(
+                    height: 28.0,
+                    child: IconButton(
+                      padding: new EdgeInsets.all(0.0),
+                      icon: Icon(Icons.play_arrow),
+                      onPressed: _speechRecognitionAvailable && !_isListening
+                          ? () => _listenStart()
+                          : null,
+                    ),
+                  ),
+                  flex: 1),
             ]),
           ),
         ]));
