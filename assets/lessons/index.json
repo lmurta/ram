@@ -15,16 +15,16 @@
 }
 ,{
   "lesson": "index",
-  "word": "Teste",
+  "word": "Cat",
   "altword": "",
-  "image": "flower",
+  "image": "cat",
   "description": "Some description"
 }
 ,{
   "lesson": "index",
-  "word": "teste2",
+  "word": "Dog",
   "altword": "",
-  "image": "tree",
+  "image": "dog",
   "description": "Some description"
 }
 ]

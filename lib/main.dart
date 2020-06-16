@@ -49,10 +49,9 @@ List _indexOfLessons;
 int _currentIndex = 0;
 
 List _currentLessonList;
-String _currentWord ="";
-String _currentLessonFile = "lesson_"+_currentIndex.toString();
+String _currentWord = "";
+String _currentLessonFile = "lesson_" + _currentIndex.toString();
 //GFCarousel _lessonCarousel = new GFCarousel(items: null);
-
 
 Future _loadIndex() async {
   //print("Local Assets:");
@@ -63,8 +62,8 @@ Future _loadIndex() async {
 
 Future _loadLesson() async {
   //print("Local Assets:");
-  String jsonString =
-      await rootBundle.loadString('assets/lessons/' + _currentLessonFile + '.json');
+  String jsonString = await rootBundle
+      .loadString('assets/lessons/' + _currentLessonFile + '.json');
   _currentLessonList = json.decode(jsonString);
   //print("Json" + _currentLessonList.toString());
 }
@@ -118,11 +117,7 @@ class MyAppState extends State<MyApp> {
         accentColor: Colors.teal,
         textTheme: AppTheme.textTheme,
       ),
-
-//      home: new Scaffold(),
-      home:
-          //myBuilder()
-          myScaffold2(),
+      home: myScaffold(),
       routes: {
         '/IapScreen': (context) => IapScreen(),
       },
@@ -130,22 +125,6 @@ class MyAppState extends State<MyApp> {
   }
 
   Builder myBuilder() => Builder(
-        builder: (context) => Center(
-          child: RaisedButton(
-            child: Text("Foo"),
-            onPressed: () => Navigator.pushNamed(context, "/"),
-          ),
-        ),
-      );
-  Builder myBuilder2() => Builder(
-        builder: (context) => Center(
-          child: RaisedButton(
-            child: Text("Foo2"),
-            onPressed: () => Navigator.pushNamed(context, "/IapScreen"),
-          ),
-        ),
-      );
-  Builder myBuilder3() => Builder(
         builder: (context) => Center(
           ////////////////////////
           child: SingleChildScrollView(
@@ -182,67 +161,17 @@ class MyAppState extends State<MyApp> {
           /////////////////////
         ),
       );
-  Scaffold myScaffold2() => Scaffold(
+  Scaffold myScaffold() => Scaffold(
         key: _scaffoldKey,
         appBar: myAppBar(),
         drawer: myDrawer(),
-        body: myBuilder3(),
+        body: myBuilder(),
       );
   void _showSnackBar(String message) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
       content: Text(message),
     ));
   }
-
-  Scaffold myScaffold() => Scaffold(
-        //scaffold
-        key: _scaffoldKey,
-        appBar: myAppBar(),
-        drawer: myDrawer(),
-        body: Builder(
-          builder: (context) => Container(
-            margin: EdgeInsets.all(0.0),
-            decoration: BoxDecoration(
-//            color: Colors.green,
-                ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    //decoration: BoxDecoration(color: Colors.red),
-                    width: double.infinity,
-                    child: //Text("top"),
-                        _isLessonLoaded
-                            ? _buildLessonCarousel()
-                            : Expanded(
-                                child: new Center(
-                                    child: new CircularProgressIndicator()),
-                              ),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    child: _buildInputArea(),
-                  ),
-                  Container(
-                    height: 200,
-                    child: Column(
-                        //decoration: BoxDecoration(color: Colors.blue),
-                        //width: double.infinity,
-                        children: <Widget>[
-                          _isListLoaded
-                              ? _buildListLessons()
-                              : new Center(
-                                  child: new CircularProgressIndicator()),
-                        ]),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-
-        //scaffold
-      );
 
   AppBar myAppBar() => AppBar(
         title: Text("Repeat After Me"),
@@ -375,9 +304,17 @@ class MyAppState extends State<MyApp> {
     ]);
   }
 
+  //PageController _myGFController;
+  //GFCarousel _myGFCarousel;
 //  GFCarousel makeGFCarousel() => new GFCarousel(
   GFCarousel makeGFCarousel() => new GFCarousel(
         autoPlay: false,
+        enableInfiniteScroll: false,
+        pagination: true,
+        initialPage: 0,
+        realPage: 0,
+
+        //pageController: _myGFController,
         items: _currentLessonList.map((img) {
           return Container(
             margin: EdgeInsets.all(8.0),
@@ -391,7 +328,13 @@ class MyAppState extends State<MyApp> {
             ),
           );
         }).toList(),
-        onPageChanged: pageChanged,
+//        onPageChanged: pageChanged,
+        onPageChanged: (index) {
+          _currentCarrouselPage = index;
+          //_myGFController = this.
+          print("Page changed to:" + index.toString());
+          pageChanged(index);
+        },
       );
 
   Widget _buildListLessons() {
@@ -458,27 +401,52 @@ class MyAppState extends State<MyApp> {
         ),
       );
 
+  int _currentCarrouselPage;
+
   Future _changeLessonTo(int index) async {
-    print("Changing lesson from :"+_currentLessonFile);
-    print("Changing lesson from :"+_currentWord);
+    print("Changing lesson from :" + _currentLessonFile);
+    print("Changing lesson from :" + _currentWord);
     _isLessonLoaded = false;
-    _currentLessonFile = "lesson_"+ index.toString();
+    _currentLessonFile = "lesson_" + index.toString();
     _currentLessonList.clear();
-    
     String jsonString = await rootBundle
         .loadString('assets/lessons/' + _currentLessonFile + '.json');
     _currentLessonList = json.decode(jsonString);
-
     _loadLesson().then((s) => setState(() {
-          pageChanged(0);
+          print("page:" +
+              _currentCarrouselPage.toString() +
+              " : " +
+              _currentLessonList.length.toString());
+          if (_currentCarrouselPage >= _currentLessonList.length) {
+            _currentCarrouselPage = _currentLessonList.length -1;
+          }
+          pageChanged(_currentCarrouselPage);
           _isLessonLoaded = true;
-          _currentWord = _currentLessonList[0]['word'];
-          print("Changing lesson to :"+_currentLessonFile);
-          print("Changing lesson to :"+_currentWord);
-    
+          print("Changing lesson to :" + _currentLessonFile);
+          print("Changing lesson to :" + _currentWord);
         }));
-
     //print("Json" + _currentLessonList.toString());
+  }
+
+  void pageChanged(int index) {
+    _listenStop();
+    //print("index:" + index.toString());
+    //_currentIndex = index;
+    setState(() {
+      _currentWord = _currentLessonList[index]['word'];
+//      _currentWord = index.toString();
+      wordText = Text(
+        _currentWord,
+        style: AppTheme.title,
+      );
+      wordListened = Text(
+        "Say:",
+        style: AppTheme.subtitle,
+      );
+      _typedController.clear();
+      _speak();
+    });
+    //new Future.delayed(const Duration(seconds: 5));
   }
 
   ///SpeechRecognition
@@ -578,26 +546,6 @@ class MyAppState extends State<MyApp> {
   }
 
   ///TTS
-
-  void pageChanged(int index) {
-    _listenStop();
-    //print("index:" + index.toString());
-    //_currentIndex = index;
-    setState(() {
-      wordText = Text(
-        _currentLessonList[index]['word'],
-        style: AppTheme.title,
-      );
-      wordListened = Text(
-        "Say:",
-        style: AppTheme.subtitle,
-      );
-      _typedController.clear();
-    });
-    _currentWord = _currentLessonList[index]['word'];
-    _speak();
-    //new Future.delayed(const Duration(seconds: 5));
-  }
 
   ///Typed text
   void _typedSubmitted(String text) {
