@@ -15,16 +15,23 @@
 }
 ,{
   "lesson": "index",
-  "word": "Cat",
-  "altword": "",
-  "image": "cat",
+  "word": "Vegetables",
+  "altword": "food",
+  "image": "vegetables",
   "description": "Some description"
 }
 ,{
   "lesson": "index",
-  "word": "Dog",
+  "word": "Fruits",
   "altword": "",
-  "image": "dog",
-  "description": "Some description"
+  "image": "fruits",
+  "description": ""
+}
+,{
+  "lesson": "index",
+  "word": "Colors",
+  "altword": "",
+  "image": "colors",
+  "description": ""
 }
 ]

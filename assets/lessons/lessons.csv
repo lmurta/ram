@@ -1,8 +1,9 @@
 lesson,word,altword,image,description
 index,Sample lessons,,flower,Some description
 index,Persons,,boy_girl,Some description
-index,Cat,,cat,Some description
-index,Dog,,dog,Some description
+index,Vegetables,food,vegetables,Some description
+index,Fruits,,fruits,
+index,Colors,,colors,
 lesson_0,Flower,,flower,Some description
 lesson_0,Cat,,cat,Some description
 lesson_0,Eagle,,eagle,Some description
@@ -19,6 +20,65 @@ lesson_1,Girl,,girl,Some description
 lesson_1,A boy and a girl,,boy_girl,Some description
 lesson_1,Man,,man,Some description
 lesson_1,Woman,,woman,Some description
-lesson_2,Cat,,cat,Some description
-lesson_3,Dog,,dog,Some description
-lesson_3,This is a dog,,dog,Some description
+lesson_2,Artichoke,,veg_artichoke,
+lesson_2,Asparagus,,veg_asparagus,
+lesson_2,Beet root,,veg_beetroot,
+lesson_2,Bell Pepper,,veg_bellpepper,
+lesson_2,Broccoli,,veg_broccoli,
+lesson_2,Cabbage,,veg_cabbage,
+lesson_2,Carrot,,veg_carrot,
+lesson_2,Cauliflower,,veg_cauliflower,
+lesson_2,Celery,,veg_celery,
+lesson_2,Cucumber,,veg_cucumber,
+lesson_2,Eggplant,,veg_eggplant,
+lesson_2,Garlic,,veg_garlic,
+lesson_2,Lettuce,,veg_lettuce,
+lesson_2,Mushroom,,veg_mushrooms,
+lesson_2,Onion,,veg_onion,
+lesson_2,pea,,veg_pea,
+lesson_2,Potato,,veg_potato,
+lesson_2,Pumpkin,,veg_pumpkin,
+lesson_2,Spinach,,veg_spinach,
+lesson_2,Turnip,,veg_turnip,
+lesson_2,Yam,,veg_yam,
+lesson_3,Apple,,fruit_apple,
+lesson_3,Apricot,,fruit_apricot,
+lesson_3,Avocado,,fruit_avocado,
+lesson_3,Banana,,fruit_banana,
+lesson_3,Blackberry,,fruit_blackberry,
+lesson_3,Cantaloupe,,fruit_cantaloupe,
+lesson_3,Cherry,,fruit_cherry,
+lesson_3,Fig,,fruit_fig,
+lesson_3,Grapes,,fruit_grapes,
+lesson_3,Green Olives,,fruit_green-olives,
+lesson_3,Kiwi,,fruit_kiwi,
+lesson_3,Lemon,,fruit_lemon,
+lesson_3,Mango,,fruit_mango,
+lesson_3,Mangosteen,,fruit_mangosteen,
+lesson_3,Orange,,fruit_orange,
+lesson_3,Papaya,,fruit_papaya,
+lesson_3,Peach,,fruit_peach,
+lesson_3,Pineapple,,fruit_pineapple,
+lesson_3,Plum,,fruit_plum,
+lesson_3,Raisins,,fruit_raisins,
+lesson_3,Strawberry,,fruit_strawberry,
+lesson_3,Tomato,,fruit_tomato,
+lesson_3,Watermelon,,fruit_watermelon,
+lesson_4,Red,,colors_red-rose,
+lesson_4,Orange,,colors_orange,
+lesson_4,Yellow,,colors_yellow-car,
+lesson_4,The car is yellow,,colors_yellow-car,
+lesson_4,Green,,colors_green-field,
+lesson_4,What a nice green field,,colors_green-field,
+lesson_4,Blue,,colors_blue-ocean,
+lesson_4,Violet,,colors_violet,
+lesson_4,Purple,,colors_purple,
+lesson_4,Pink,,colors_pink-chair-ballon,
+lesson_4,Silver,,colors_silver,
+lesson_4,Gold,,colors_gold,
+lesson_4,Beige,,colors_beige-teddybear,
+lesson_4,Brown,,colors_brown-coffe,
+lesson_4,Grey,gray,colors_gray_cat,
+lesson_4,Black,,colors_black-dog,
+lesson_4,White,,colors_white-horse,
+lesson_4,That is a white horse.,that is a white horse,colors_white-horse,

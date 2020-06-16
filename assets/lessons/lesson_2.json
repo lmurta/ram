@@ -1,9 +1,149 @@
 [
 {
   "lesson": "lesson_2",
-  "word": "Cat",
+  "word": "Artichoke",
   "altword": "",
-  "image": "cat",
-  "description": "Some description"
+  "image": "veg_artichoke",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Asparagus",
+  "altword": "",
+  "image": "veg_asparagus",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Beet root",
+  "altword": "",
+  "image": "veg_beetroot",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Bell Pepper",
+  "altword": "",
+  "image": "veg_bellpepper",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Broccoli",
+  "altword": "",
+  "image": "veg_broccoli",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Cabbage",
+  "altword": "",
+  "image": "veg_cabbage",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Carrot",
+  "altword": "",
+  "image": "veg_carrot",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Cauliflower",
+  "altword": "",
+  "image": "veg_cauliflower",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Celery",
+  "altword": "",
+  "image": "veg_celery",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Cucumber",
+  "altword": "",
+  "image": "veg_cucumber",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Eggplant",
+  "altword": "",
+  "image": "veg_eggplant",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Garlic",
+  "altword": "",
+  "image": "veg_garlic",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Lettuce",
+  "altword": "",
+  "image": "veg_lettuce",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Mushroom",
+  "altword": "",
+  "image": "veg_mushrooms",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Onion",
+  "altword": "",
+  "image": "veg_onion",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "pea",
+  "altword": "",
+  "image": "veg_pea",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Potato",
+  "altword": "",
+  "image": "veg_potato",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Pumpkin",
+  "altword": "",
+  "image": "veg_pumpkin",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Spinach",
+  "altword": "",
+  "image": "veg_spinach",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Turnip",
+  "altword": "",
+  "image": "veg_turnip",
+  "description": ""
+}
+,{
+  "lesson": "lesson_2",
+  "word": "Yam",
+  "altword": "",
+  "image": "veg_yam",
+  "description": ""
 }
 ]

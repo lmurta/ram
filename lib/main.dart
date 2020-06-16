@@ -37,6 +37,12 @@ int totPoints = 0;
 Text pointsText = Text("0", style: AppTheme.display1);
 final formatter = new NumberFormat("###,###.###");
 var randomizer = new Random();
+var _congratulation = [
+  'Congratulations!',
+  'Very good!',
+  'Excelent!',
+  'Keep going!',
+];
 
 Icon iconWord = Icon(Icons.local_library);
 Icon iconType = Icon(Icons.keyboard);
@@ -47,6 +53,7 @@ final _typedController = TextEditingController();
 
 List _indexOfLessons;
 int _currentIndex = 0;
+int _currentCarrouselPage = 0;
 
 List _currentLessonList;
 String _currentWord = "";
@@ -128,34 +135,45 @@ class MyAppState extends State<MyApp> {
         builder: (context) => Center(
           ////////////////////////
           //child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Container(//top
-                  //color: Colors.green,
-                  width: double.infinity,
-                  child: //Text("top"),
-                      _isLessonLoaded
-                          ? _buildLessonCarousel()
+          child: Column(
+            children: <Widget>[
+              Container(
+                //top
+                //color: Colors.green,
+                width: double.infinity,
+                child: //Text("top"),
+                    _isLessonLoaded
+                        ? _buildLessonCarousel()
+                        : Container(
+                            height: 150,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: new Center(
+                                child: new CircularProgressIndicator(),
+                              ),
+                            ),
+                          ),
+              ), //top
+              Container(
+                //middle
+                width: double.infinity,
+                height: 120,
+                //color: Colors.red,
+                child: _buildInputArea(),
+              ), //middle
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    //bot
+                    //color: Colors.amber,
+                    child: Column(children: <Widget>[
+                      _isListLoaded
+                          ? _buildListLessons()
                           : new Center(child: new CircularProgressIndicator()),
-                ),//top
-                Container(//middle
-                  width: double.infinity,
-                  height: 120,
-                  //color: Colors.red,
-                  child: _buildInputArea(),
-                ),//middle
-                Expanded(flex:1,child: 
-                Container(//bot
-                  //color: Colors.amber,
-                  child: Column(children: <Widget>[
-                    _isListLoaded
-                        ? _buildListLessons()
-                        : new Center(child: new CircularProgressIndicator()),
-                  ]),
-                )
-                ),//bot
-              ],
-            ),
+                    ]),
+                  )), //bot
+            ],
+          ),
           //),
           /////////////////////
         ),
@@ -168,7 +186,10 @@ class MyAppState extends State<MyApp> {
       );
   void _showSnackBar(String message) {
     _scaffoldKey.currentState.showSnackBar(SnackBar(
-      content: Text(message),
+      content: Text(
+        _congratulation[randomizer.nextInt(_congratulation.length)],
+        style: AppTheme.textTheme.headline4,
+      ),
     ));
   }
 
@@ -239,11 +260,11 @@ class MyAppState extends State<MyApp> {
                   child: new SizedBox(
                     height: 28.0,
                     child: IconButton(
-                        padding: new EdgeInsets.all(0.0),
-                        icon: Icon(Icons.play_arrow),
-                        onPressed: null
-                        //onPressed: () => _speak(),
-                        ),
+                      padding: new EdgeInsets.all(0.0),
+                      icon: Icon(Icons.play_arrow),
+                      //onPressed: null
+                      onPressed: () => _speak(),
+                    ),
                   ),
                   flex: 1,
                 ),
@@ -303,9 +324,6 @@ class MyAppState extends State<MyApp> {
     ]);
   }
 
-  //PageController _myGFController;
-  //GFCarousel _myGFCarousel;
-//  GFCarousel makeGFCarousel() => new GFCarousel(
   GFCarousel makeGFCarousel() => new GFCarousel(
         autoPlay: false,
         enableInfiniteScroll: false,
@@ -399,8 +417,6 @@ class MyAppState extends State<MyApp> {
           size: 30.0,
         ),
       );
-
-  int _currentCarrouselPage;
 
   Future _changeLessonTo(int index) async {
     print("Changing lesson from :" + _currentLessonFile);

@@ -1,16 +1,163 @@
 [
 {
   "lesson": "lesson_3",
-  "word": "Dog",
+  "word": "Apple",
   "altword": "",
-  "image": "dog",
-  "description": "Some description"
+  "image": "fruit_apple",
+  "description": ""
 }
 ,{
   "lesson": "lesson_3",
-  "word": "This is a dog",
+  "word": "Apricot",
   "altword": "",
-  "image": "dog",
-  "description": "Some description"
+  "image": "fruit_apricot",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Avocado",
+  "altword": "",
+  "image": "fruit_avocado",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Banana",
+  "altword": "",
+  "image": "fruit_banana",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Blackberry",
+  "altword": "",
+  "image": "fruit_blackberry",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Cantaloupe",
+  "altword": "",
+  "image": "fruit_cantaloupe",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Cherry",
+  "altword": "",
+  "image": "fruit_cherry",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Fig",
+  "altword": "",
+  "image": "fruit_fig",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Grapes",
+  "altword": "",
+  "image": "fruit_grapes",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Green Olives",
+  "altword": "",
+  "image": "fruit_green-olives",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Kiwi",
+  "altword": "",
+  "image": "fruit_kiwi",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Lemon",
+  "altword": "",
+  "image": "fruit_lemon",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Mango",
+  "altword": "",
+  "image": "fruit_mango",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Mangosteen",
+  "altword": "",
+  "image": "fruit_mangosteen",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Orange",
+  "altword": "",
+  "image": "fruit_orange",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Papaya",
+  "altword": "",
+  "image": "fruit_papaya",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Peach",
+  "altword": "",
+  "image": "fruit_peach",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Pineapple",
+  "altword": "",
+  "image": "fruit_pineapple",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Plum",
+  "altword": "",
+  "image": "fruit_plum",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Raisins",
+  "altword": "",
+  "image": "fruit_raisins",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Strawberry",
+  "altword": "",
+  "image": "fruit_strawberry",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Tomato",
+  "altword": "",
+  "image": "fruit_tomato",
+  "description": ""
+}
+,{
+  "lesson": "lesson_3",
+  "word": "Watermelon",
+  "altword": "",
+  "image": "fruit_watermelon",
+  "description": ""
 }
 ]
