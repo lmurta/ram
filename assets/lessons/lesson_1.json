@@ -1,16 +1,37 @@
 [
 {
   "lesson": "lesson_1",
-  "word": "Cat",
+  "word": "Boy",
   "altword": "",
-  "image": "cat",
+  "image": "boy",
   "description": "Some description"
 }
 ,{
   "lesson": "lesson_1",
-  "word": "Eagle",
+  "word": "Girl",
   "altword": "",
-  "image": "eagle",
+  "image": "girl",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_1",
+  "word": "A boy and a girl",
+  "altword": "",
+  "image": "boy_girl",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_1",
+  "word": "Man",
+  "altword": "",
+  "image": "man",
+  "description": "Some description"
+}
+,{
+  "lesson": "lesson_1",
+  "word": "Woman",
+  "altword": "",
+  "image": "woman",
   "description": "Some description"
 }
 ]

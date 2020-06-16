@@ -48,8 +48,9 @@ final _typedController = TextEditingController();
 
 List _listIndex;
 List _listLesson;
-String _currentLesson = "lesson_0";
-int _currentWord = 0;
+int _currentWord = 1;
+String _currentLesson = "lesson_"+_currentWord.toString();
+
 
 Future _loadIndex() async {
   //print("Local Assets:");
@@ -212,11 +213,9 @@ class MyAppState extends State<MyApp> {
                         _isLessonLoaded
                             ? _buildLessonCarousel()
                             : Expanded(
-                              
-                              child: new Center(
-                                
-                                  child: new CircularProgressIndicator()),
-                            ),
+                                child: new Center(
+                                    child: new CircularProgressIndicator()),
+                              ),
                   ),
                   Container(
                     width: double.infinity,
@@ -279,13 +278,13 @@ class MyAppState extends State<MyApp> {
                   DrawerHeader(
                     child: Text(""),
                     decoration: BoxDecoration(
-                      color: Colors.teal[900],
-                      image: DecorationImage(image: AssetImage("assets/lessons/knowledge.jpg"),
-                      fit: BoxFit.cover)
-                    ),
+                        color: Colors.teal[900],
+                        image: DecorationImage(
+                            image: AssetImage("assets/lessons/knowledge.jpg"),
+                            fit: BoxFit.cover)),
                   ),
                   ListTile(
-                      title: Text("Item1fff"),
+                      title: Text("Register"),
                       trailing: Icon(Icons.arrow_forward),
                       onTap: () {
                         Navigator.of(context).pop();
@@ -425,12 +424,7 @@ class MyAppState extends State<MyApp> {
             fit: BoxFit.cover),
         onTap: () {
           print("Tap on: " + index.toString());
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => IapScreen()));
-          //Navigator.of(context).pushNamed('screen_iap',);
-          //Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          //  return IapScreen();
-          //}));
+          _changeLessonTo(index);
         },
         title: Text(
           _listIndex[index]['word'],
@@ -460,6 +454,22 @@ class MyAppState extends State<MyApp> {
           size: 30.0,
         ),
       );
+
+  Future _changeLessonTo(int index) async {
+    _isLessonLoaded = false;
+    _currentLesson = "lesson_"+ index.toString();
+    _listLesson.clear();
+    String jsonString = await rootBundle
+        .loadString('assets/lessons/' + _currentLesson + '.json');
+    _listLesson = json.decode(jsonString);
+
+    _loadLesson().then((s) => setState(() {
+          pageChanged(index);
+          _isLessonLoaded = true;
+        }));
+
+    //print("Json" + _listLesson.toString());
+  }
 
   ///SpeechRecognition
   void activateSpeechRecognizer() {
