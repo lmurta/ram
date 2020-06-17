@@ -1,9 +1,9 @@
 lesson,word,altword,image,description
-index,Sample lessons,,flower,Some description
-index,Persons,,boy_girl,Some description
-index,Vegetables,food,vegetables,Some description
-index,Fruits,,fruits,
-index,Colors,,colors,
+index,Sample lessons,,flower,Learn English through pictures
+index,Persons,,boy_girl,Easy level
+index,Vegetables,food,vegetables,Learn names of vegetables
+index,Fruits,,fruits,Name of fruits
+index,Colors,,colors,Learn about colors
 lesson_0,Flower,,flower,Some description
 lesson_0,Cat,,cat,Some description
 lesson_0,Eagle,,eagle,Some description

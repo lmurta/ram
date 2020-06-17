@@ -36,6 +36,13 @@
 }
 ,{
   "lesson": "lesson_4",
+  "word": "What a nice green field",
+  "altword": "",
+  "image": "colors_green-field",
+  "description": ""
+}
+,{
+  "lesson": "lesson_4",
   "word": "Blue",
   "altword": "",
   "image": "colors_blue-ocean",

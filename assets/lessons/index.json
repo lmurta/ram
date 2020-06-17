@@ -4,34 +4,34 @@
   "word": "Sample lessons",
   "altword": "",
   "image": "flower",
-  "description": "Some description"
+  "description": "Learn English through pictures"
 }
 ,{
   "lesson": "index",
   "word": "Persons",
   "altword": "",
   "image": "boy_girl",
-  "description": "Some description"
+  "description": "Easy level"
 }
 ,{
   "lesson": "index",
   "word": "Vegetables",
   "altword": "food",
   "image": "vegetables",
-  "description": "Some description"
+  "description": "Learn names of vegetables"
 }
 ,{
   "lesson": "index",
   "word": "Fruits",
   "altword": "",
   "image": "fruits",
-  "description": ""
+  "description": "Name of fruits"
 }
 ,{
   "lesson": "index",
   "word": "Colors",
   "altword": "",
   "image": "colors",
-  "description": ""
+  "description": "Learn about colors"
 }
 ]

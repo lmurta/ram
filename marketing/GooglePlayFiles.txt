@@ -1,0 +1,18 @@
+Screenshot2
+
+Feature Graphic
+Default – English (United States) – en-US
+1024 w x 500 h
+JPG or 24-bit PNG (no alpha)
+
+Promo Graphic
+Default – English (United States) – en-US
+180 w x 120 h
+JPG or 24-bit PNG (no alpha)
+
+
+TV Banner
+Default – English (United States) – en-US
+1280 w x 720 h
+JPG or 24-bit PNG (no alpha)
+

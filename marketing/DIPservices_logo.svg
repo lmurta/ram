@@ -15,7 +15,7 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="DIPservices_logosvg.svg"
+   sodipodi:docname="DIPservices_logo.svg"
    inkscape:export-filename="/home/luciano/Development/DIPservices_logo.png"
    inkscape:export-xdpi="300"
    inkscape:export-ydpi="300">
@@ -29,8 +29,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6679688"
-     inkscape:cx="147.18501"
-     inkscape:cy="160.59953"
+     inkscape:cx="38.370025"
+     inkscape:cy="158.2014"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -76,7 +76,7 @@
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
          id="path825"
-         d="m 31.75,265.25003 -25.4000002,-12.7 H 76.199998 Z"
+         d="m 31.75,265.25003 -19.05,-12.7 63.499998,0 z"
          style="fill:#c0c0c0;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="cccc"
@@ -88,7 +88,7 @@
          sodipodi:nodetypes="cccc"
          inkscape:connector-curvature="0"
          id="path821"
-         d="m 31.75,265.25003 -25.4000002,-63.5 69.8499982,0 z"
+         d="m 31.75,265.25003 -19.05,-63.5 63.499998,0 z"
          style="fill:#ff7f50;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
   </g>
